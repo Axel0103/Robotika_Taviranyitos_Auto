@@ -24,11 +24,10 @@ void loop()
   Wire.onRequest(requestValues);
   ForwardBackward =  map(analogRead(y), 0, 1023, 1023, 0);
   LeftRight = analogRead(x);
-  delay(1000); // Delay a little bit to improve simulation performance
+  delay(1000);
 }
 
 void requestValues() {
-  Serial.println("Stepped into requestValues");
   String answer = "";
 
   String LR = "";

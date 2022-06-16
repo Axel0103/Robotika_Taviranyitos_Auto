@@ -1,16 +1,15 @@
 #include <Wire.h>
 #include <string.h>
 #include <stdio.h>
-//#include "Volume.h"
 
 #define SLAVE_ADD  19       // I2C SLAVE PIN
 #define ANSWERSIZE 11
 
-#define BalEN  3        // BAL MOTOR ENABLE PIN 
+#define BalEN  3
 #define BalIN1 6
 #define BalIN2 4
 
-#define JobbEN  9        // JOBB MOTOR ENABLE PIN
+#define JobbEN  9
 #define JobbIN1 8
 #define JobbIN2 7
 
@@ -27,19 +26,11 @@ int distance;
 
 int readUltrasonicDistance()
 {
-  // Clears the TRIGGER condition
   digitalWrite(TRIGGER, LOW);
-  Serial.println("Second delay - microsec");
-  //delayMicroseconds(2);
-  // Sets the TRIGGER HIGH (ACTIVE) for 10 microseconds
   digitalWrite(TRIGGER, HIGH);
-  Serial.println("Third delay - microsec");
-  //delayMicroseconds(10);
   digitalWrite(TRIGGER, LOW);
-  // Reads the ECHO, returns the sound wave travel time in microseconds
   duration = pulseIn(ECHO, HIGH);
-  // Calculating the distance  
-  distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
+  distance = duration * 0.034 / 2;
   Serial.print("Distance: ");
   Serial.print(distance);
   Serial.println(" cm");
@@ -134,8 +125,6 @@ void ReadAnswer() {
 
 void generateSound() {
     tone(HANGSZORO, 440, 127);
-    Serial.println("Forth delay - volume delay");
-    Serial.println("SIPOLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOK");
 }
 
 void proximitySensor() {
@@ -149,9 +138,7 @@ void proximitySensor() {
 
 void loop()
 {
-  Serial.println("First delay.");
   delay(400);
-  Serial.println("First delay over");
   Serial.println();Serial.println();
   ReadAnswer();
 
